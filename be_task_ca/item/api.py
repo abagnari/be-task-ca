@@ -1,12 +1,10 @@
-from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
+from typing import List
 
-from .usecases import create_item, get_all
-
-from ..common import get_db
+from fastapi import APIRouter, status
 
 from .schema import CreateItemRequest, CreateItemResponse
-
+from .usecases import create_item, get_all
+from ..dependencies import ItemRepository
 
 item_router = APIRouter(
     prefix="/items",
@@ -14,13 +12,15 @@ item_router = APIRouter(
 )
 
 
-@item_router.post("/")
+@item_router.post("/",
+                  status_code=status.HTTP_201_CREATED)
 async def post_item(
-    item: CreateItemRequest, db: Session = Depends(get_db)
+        item: CreateItemRequest,
+        repository: ItemRepository
 ) -> CreateItemResponse:
-    return create_item(item, db)
+    return await create_item(item, repository)
 
 
 @item_router.get("/")
-async def get_items(db: Session = Depends(get_db)):
-    return get_all(db)
+async def get_items(repository: ItemRepository) -> List[CreateItemResponse]:
+    return await get_all(repository)

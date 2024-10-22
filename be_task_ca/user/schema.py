@@ -18,6 +18,9 @@ class CreateUserResponse(BaseModel):
     email: str
     shipping_address: str | None
 
+    class Config:
+        from_attributes = True
+
 
 class AddToCartRequest(BaseModel):
     item_id: UUID
@@ -25,4 +28,8 @@ class AddToCartRequest(BaseModel):
 
 
 class AddToCartResponse(BaseModel):
-    items: List[AddToCartRequest]
+    item_id: UUID
+    quantity: int
+
+    class Config:
+        from_attributes = True

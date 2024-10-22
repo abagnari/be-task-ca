@@ -8,21 +8,22 @@ packages = [{ include = "be_task_ca" }]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-sqlalchemy = "^2.0.11"
-psycopg2 = "^2.9.6"
-fastapi = "^0.95.1"
-uvicorn = "^0.22.0"
+sqlalchemy = "^2.0.36"
+psycopg2 = "^2.9.10"
+aiosqlite = "^0.20.0"
+fastapi = {extras = ["standard"], version = "^0.115.2"}
 
 
 [tool.poetry.group.dev.dependencies]
 pydeps = "^1.12.2"
-pytest = "^7.3.1"
 flake8 = "^6.0.0"
 flake8-bugbear = "^23.3.23"
 flake8-pyproject = "^1.2.3"
 cohesion = "^1.1.0"
 black = "^23.3.0"
 mypy = "^1.2.0"
+pytest = "^8.3.3"
+pytest-asyncio = "^0.24.0"
 
 [build-system]
 requires = ["poetry-core"]
@@ -46,3 +47,7 @@ count = true
 
 [tool.mypy]
 #plugins = "sqlalchemy.ext.mypy.plugin"
+
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"

@@ -13,6 +13,6 @@ class CreateItemRequest(BaseModel):
 class CreateItemResponse(CreateItemRequest):
     id: UUID
 
+    class Config:
+        from_attributes = True
 
-class AllItemsRepsonse(BaseModel):
-    items: List[CreateItemResponse]
