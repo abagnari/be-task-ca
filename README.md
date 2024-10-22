@@ -43,6 +43,7 @@ Other things that were just corrections:
 - Removed some manual duplicated key checks (I instead catch the integrity exception)
 - Made the whole app more REST-compliant (201 status code added, removed the object with just a list of other objects as a field, added directly the list of objects to the route)
 - Updated the libraries so that I could use a top to bottom async implementation
+- Added typing where it was needed so that Swagger could show the correct documentation
 
 *Please do not spend more than 2-3 hours on this task.*
 
